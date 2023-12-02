@@ -6,7 +6,7 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
-        String serverAddress = "server_ip";
+        String serverAddress = "127.0.0.1";
         int serverPort = 8080;
         String filePath = "file.txt";
 

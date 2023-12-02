@@ -66,7 +66,7 @@ public class Main {
     }
 
     private static void sendToDB(String jsoned) {
-        String url = "jdbc:mysql://<database_server_ip>:3306/database";
+        String url = "jdbc:mysql://127.0.0.1:3306/database";
         String username = "user";
         String password = "password";
 

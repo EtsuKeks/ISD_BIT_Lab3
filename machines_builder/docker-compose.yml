@@ -1,0 +1,45 @@
+version: "3.7"
+
+services:
+
+  consumer:
+    container_name: consumer
+    image: ubuntu:latest
+    restart: unless-stopped
+    command: tail -f /dev/null
+    expose:
+      - "8000"
+    ports:
+      - "127.0.0.1:8000:8000"
+
+  producer:
+    container_name: producer
+    image: ubuntu:latest
+    restart: unless-stopped
+    command: tail -f /dev/null
+    expose:
+      - "8080"
+    ports:
+      - "127.0.0.1:8080:8080"
+
+  db:
+    container_name: mysql
+    image: ubuntu:latest
+    restart: always
+    command: tail -f /dev/null
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: database
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    expose:
+      - "3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "127.0.0.1:3306:3306"
+
+volumes:
+  db_data:
+    name: db_data
+    driver: local
