@@ -1,0 +1,10 @@
+---
+- hosts:
+    - consumer
+    - producer
+  tasks:
+
+    - name: install java
+      apt:
+        name: openjdk11
+        state:

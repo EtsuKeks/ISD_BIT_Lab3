@@ -1,8 +1,0 @@
-[consumer]
-    name_server_consumer ansible_host=127.0.0.1:8000 ansible_ssh_user=sexual_white_chocolate ansible_ssh_pass=5612tde
-
-[producer]
-    name_server_producer ansible_host=127.0.0.1:8080 ansible_ssh_user=sexual_whtie_chocolate ansible_ssh_pass=5612tde
-
-[db]
-    name_server_db ansible_host=127.0.0.1:3306 ansible_ssh_user=sexual_white_chocolate ansible_ssh_pass=5612tde
