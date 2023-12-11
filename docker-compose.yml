@@ -49,7 +49,7 @@ services:
     container_name: ansible
     image: karimullin_ansible_image
     restart: unless-stopped
-    command: ansible -i inventories/hosts -m ping all
+    command: ls
     expose:
       - "22"
     networks:
