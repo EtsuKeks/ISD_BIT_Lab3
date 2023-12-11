@@ -18,8 +18,7 @@ RUN javac Main.java \
 WORKDIR /app/ISD_BIT_Lab3/Producer
 RUN javac Main.java \
     && jar cfe Producer.jar Main.class MiniClass.class \
-    && rm -rf Main.* MiniClass.* \
+    && rm -rf Main.* MiniClass.*
 WORKDIR /app
 RUN rm -rf ansible/inventories/* ansible/roles/* ansible/playbook.yml \
-    && rmdir ansible/roles && rmdir -p ansible/inventories \
     && rm -rf docker* Docker* init.sh

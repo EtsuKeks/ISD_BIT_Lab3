@@ -50,10 +50,6 @@ services:
     image: karimullin_ansible_image
     restart: unless-stopped
     command: ls
-    volumes:
-      - type: bind
-        source: $(pwd)/jar_holder
-        target: /app
     expose:
       - "22"
     networks:
