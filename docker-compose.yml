@@ -1,0 +1,70 @@
+version: "3.7"
+
+services:
+
+  consumer:
+    container_name: consumer
+    image: ubuntu:latest
+    restart: unless-stopped
+    command: sleep infinity
+    expose:
+      - "22"
+      - "8000"
+    networks:
+      karimullin_network:
+        ipv4_address: 172.18.0.2
+
+  producer:
+    container_name: producer
+    image: ubuntu:latest
+    restart: unless-stopped
+    command: sleep infinity
+    expose:
+      - "22"
+      - "8080"
+    networks:
+      karimullin_network:
+        ipv4_address: 172.18.0.3
+
+  db:
+    container_name: mysql
+    image: ubuntu:latest
+    restart: unless-stopped
+    command: sleep infinity
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: database
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    expose:
+      - "22"
+      - "3306"
+    volumes:
+      - karimullin_db_data_volume:/var/lib/mysql
+    networks:
+      karimullin_network:
+        ipv4_address: 172.18.0.4
+
+  ansible:
+    container_name: ansible
+    image: karimullin_ansible_image
+    restart: unless-stopped
+    command: ansible -i inventories/hosts -m ping all
+    expose:
+      - "22"
+    networks:
+      karimullin_network:
+        ipv4_address: 172.18.0.5
+
+volumes:
+  karimullin_db_data_volume:
+    name: karimullin_db_data_volume
+    driver: local
+
+networks:
+  karimullin_network:
+    driver: bridge
+    name: karimullin_network
+    ipam:
+      config:
+        - subnet: 172.18.0.0/24
