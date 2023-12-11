@@ -1,9 +1,10 @@
 FROM openjdk:11
+WORKDIR /app
 RUN apt-get update \
     && apt-get install -y git \
     && rm -rf /var/lib/apt/lists/* \
     && git clone https://github.com/SexualWhiteChocolate/ISD_BIT_Lab3.git
-WORKDIR /ISD_BIT_Lab3/Consumer
+WORKDIR /app/ISD_BIT_Lab3/Consumer
 RUN javac Main.java \
     && jar cfe Consumer.jar Main.class MiniClass.class ru/sber/karimullin/hw_3/Factory/Factory.class \
     ru/sber/karimullin/hw_3/Factory/Factory$Counter.class ru/sber/karimullin/hw_3/Generator/Generator.class \
@@ -14,7 +15,11 @@ RUN javac Main.java \
     && rmdir ru/sber/karimullin/hw_3/Factory ru/sber/karimullin/hw_3/Generator \
     && rmdir -p ru/sber/karimullin/hw_3/RuntimeCompiler \
     && rm -rf Main.* MiniClass.*
-WORKDIR /ISD_BIT_Lab3/Producer
+WORKDIR /app/ISD_BIT_Lab3/Producer
 RUN javac Main.java \
     && jar cfe Producer.jar Main.class MiniClass.class \
-    && rm -rf Main.* MiniClass.*
+    && rm -rf Main.* MiniClass.* \
+WORKDIR /app
+RUN rm -rf ansible/inventories/* ansible/roles/* ansible/playbook.yml \
+    && rmdir ansible/roles && rmdir -p ansible/inventories \
+    && rm -rf docker* Docker* init.sh
