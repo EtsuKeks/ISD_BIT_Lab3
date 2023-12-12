@@ -1,10 +1,18 @@
 ---
-- hosts:
-    - consumer
-    - producer
-  tasks:
+- name: my_sql setup
+  hosts: name_server_db
+  become: true
+  roles:
+    - my_sql
 
-    - name: install java
-      apt:
-        name: openjdk11
-        state:
+- name: Install and Run Consumer Application
+  hosts: name_server_consumer
+  become: true
+  roles:
+    - application_consumer
+
+- name: Install and Run Producer Application
+  hosts: name_server_producer
+  become: true
+  roles:
+    - application_producer

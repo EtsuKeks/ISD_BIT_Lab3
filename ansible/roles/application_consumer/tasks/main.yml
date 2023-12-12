@@ -1,0 +1,18 @@
+---
+- name: Install Java
+  become: true
+  apk:
+    name: openjdk-11-jdk
+    state: present
+
+- name: Copy Consumer JAR file
+  copy:
+    src: /app/ISD_BIT_Lab3/Consumer/Consumer.jar
+    dest: /opt/Consumer.jar
+    mode: 0644
+  become: true
+
+- name: Run Java application
+  command: >
+    java -jar /opt/Consumer.jar
+  become: true

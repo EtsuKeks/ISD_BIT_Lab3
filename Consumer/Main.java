@@ -66,12 +66,12 @@ public class Main {
     }
 
     private static void sendToDB(String jsoned) {
-        String url = "jdbc:mysql://172.18.0.4/database";
-        String username = "user";
-        String password = "password";
+        String url = "jdbc:mysql://172.18.0.4/mydatabase";
+        String username = "myuser";
+        String password = "mypassword";
 
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
-            String insertQuery = "INSERT INTO table (timestamps, jsoned_objects) VALUES (?, ?)";
+            String insertQuery = "INSERT INTO mytable (timestamps, jsoned_objects) VALUES (?, ?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
                 String timestamp = new Date().toString();
                 preparedStatement.setString(1, timestamp);

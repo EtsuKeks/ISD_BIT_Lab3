@@ -1,0 +1,46 @@
+---
+- name: Install pip for Python 3
+  apk:
+    name: py3-pip
+  become: true
+
+- name: Install PyMySQL for Python 3
+  pip:
+    name: pymysql
+    executable: pip3
+  become: true
+
+- name: Install MySQL client
+  apk:
+    name: mysql-client
+    state: present
+  become: true
+
+- name: Start the MySQL service
+  service:
+    name: mysql
+    state: started
+    enabled: true
+  become: true
+
+- name: Ensure MySQL database is created
+  community.mysql.mysql_db:
+    name: "{{ mysql_database }}"
+    state: present
+  become: true
+
+- name: Create MySQL user
+  community.mysql.mysql_user:
+    name: "{{ mysql_user }}"
+    password: "{{ mysql_user_password }}"
+    priv: "{{ mysql_database }}.*:ALL"
+    state: present
+  become: true
+
+- name: Create table in MySQL database
+  community.mysql.mysql_query:
+    login_user: "{{ mysql_user }}"
+    login_password: "{{ mysql_user_password }}"
+    db: "{{ mysql_database }}"
+    query: "CREATE TABLE IF NOT EXISTS {{ mysql_table }} (timestamp VARCHAR(255) PRIMARY KEY, jsoned_object VARCHAR(1023));"
+  become: true

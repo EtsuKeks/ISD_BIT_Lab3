@@ -4,8 +4,9 @@ RUN apk add --no-cache openssh-client openssh-server ansible git sshpass
 RUN mkdir -p /root/.ssh
 RUN echo "HOST *" > /root/.ssh/config && echo " StrictHostKeyChecking no" >> /root/.ssh/config
 
+RUN ansible-galaxy collection install community.mysql
+
 COPY ./ansible /ansible
 COPY ./app /app
-WORKDIR /ansible
 
-CMD ["ansible-playbook", "-i", "inventories/hosts", "playbook.yml"]
+CMD ["ansible-playbook", "-i", "ansible/inventories/hosts", "ansible/playbook.yml"]
