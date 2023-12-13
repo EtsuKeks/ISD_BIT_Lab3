@@ -1,36 +1,39 @@
 ---
-- name: Install pip for Python 3
-  apk:
-    name: py3-pip
+- name: Install required packages
+  apt:
+    name:
+      - pip
+      - mysql-server
+      - default-libmysqlclient-dev
+    update_cache: yes
   become: true
 
-- name: Install PyMySQL for Python 3
+- name: Install mysql python library
   pip:
-    name: pymysql
-    executable: pip3
+    name: mysqlclient
   become: true
 
-- name: Install MySQL client
-  apk:
-    name: mysql-client
-    state: present
-  become: true
-
-- name: Start the MySQL service
+- name: Enable and start mysql
   service:
     name: mysql
     state: started
-    enabled: true
+    enabled: yes
   become: true
 
-- name: Ensure MySQL database is created
-  community.mysql.mysql_db:
+- name: Waiting for MySQL Service
+  wait_for:
+    port: 3306
+    delay: 5
+  become: true
+
+- name: Creating MySql db
+  mysql_db:
     name: "{{ mysql_database }}"
     state: present
   become: true
 
 - name: Create MySQL user
-  community.mysql.mysql_user:
+  mysql_user:
     name: "{{ mysql_user }}"
     password: "{{ mysql_user_password }}"
     priv: "{{ mysql_database }}.*:ALL"

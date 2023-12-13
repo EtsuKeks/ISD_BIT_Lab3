@@ -4,4 +4,5 @@ sudo docker create -it --name karimullin_builder karimullin_builder_image bash
 sudo docker cp karimullin_builder:/app ./app
 sudo docker rm -f karimullin_builder
 sudo docker build -t karimullin_ansible_image -f Dockerfile_ansible .
-sudo docker-compose -p 'karimullin_proj' up
+sudo docker build -t karimullin_servers_image -f Dockerfile_servers .
+sudo docker-compose -p 'karimullin_proj' up --force-recreate

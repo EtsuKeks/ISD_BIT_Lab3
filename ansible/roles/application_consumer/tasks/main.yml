@@ -1,9 +1,9 @@
 ---
 - name: Install Java
-  become: true
-  apk:
+  apt:
     name: openjdk-11-jdk
     state: present
+  become: true
 
 - name: Copy Consumer JAR file
   copy:
