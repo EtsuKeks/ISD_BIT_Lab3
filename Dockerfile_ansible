@@ -8,4 +8,9 @@ RUN apk add --no-cache openssh-client openssh-server ansible git sshpass \
 COPY ./ansible .
 COPY ./app /app
 
+RUN echo "" > .my.chf \
+    && echo "[client]\n" >> .my.cnf \
+    && echo "user=root\n" >> .my.cnf \
+    && echo "password=root" >> .my.cnf
+
 CMD [""]

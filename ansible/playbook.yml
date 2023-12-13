@@ -7,20 +7,29 @@
 #      debug:
 #        var: ansible_facts
 
-- name: my_sql setup
+- name: MySql setup
   hosts: name_server_db
+  gather_facts: false
   roles:
     - my_sql
   become: true
+  handlers:
+    - name: Restart MySQL
+      service:
+        name: mysql
+        state: restarted
+      become: true
 
-- name: Install and Run Consumer Application
+- name: Consumer setup & running
   hosts: name_server_consumer
+  gather_facts: false
   roles:
     - application_consumer
   become: true
 
-- name: Install and Run Producer Application
+- name: Producer setup & running
   hosts: name_server_producer
+  gather_facts: false
   roles:
     - application_producer
   become: true
