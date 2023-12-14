@@ -69,14 +69,14 @@
     name: "{{ mysql_database }}"
     state: present
     login_unix_socket: /var/run/mysqld/mysqld.sock
-#    login_user: root
-#    login_password: "{{ mysql_root_password }}"
+  #    login_user: root
+  #    login_password: "{{ mysql_root_password }}"
   become: true
 
 - name: Create table in MySQL database
   community.mysql.mysql_query:
-#    login_user: root
-#    login_password: "{{ mysql_root_password }}"
+    #    login_user: root
+    #    login_password: "{{ mysql_root_password }}"
     login_unix_socket: /var/run/mysqld/mysqld.sock
     login_db: "{{ mysql_database }}"
     query: "CREATE TABLE IF NOT EXISTS {{ mysql_table }} (timestamp VARCHAR(255) PRIMARY KEY, jsoned_object VARCHAR(1023));"
