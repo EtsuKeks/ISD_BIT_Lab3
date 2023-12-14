@@ -34,8 +34,6 @@ public class Main {
                 sendFile(socket, filePath);
                 deleteFile(filePath);
 
-                System.out.println("DONE");
-
                 synchronized (Thread.currentThread()) {
                     try {
                         Thread.currentThread().wait(5000);
