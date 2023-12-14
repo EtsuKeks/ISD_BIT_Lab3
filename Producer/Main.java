@@ -6,8 +6,8 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
-        String serverAddress = "172.18.0.3";
-        int serverPort = 8080;
+        String serverAddress = "172.18.0.2";
+        int serverPort = 8097;
         String filePath = "file.txt";
 
         while(true) {

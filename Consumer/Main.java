@@ -10,11 +10,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InvocationTargetException,
             NoSuchMethodException, InstantiationException, IllegalAccessException {
-        int port = 8080;
+        int port = 8097;
         String filePath = "file.txt";
 
         while(true) {
@@ -66,9 +65,9 @@ public class Main {
     }
 
     private static void sendToDB(String jsoned) {
-        String url = "jdbc:mysql://172.18.0.4/mydatabase";
-        String username = "myuser";
-        String password = "mypassword";
+        String url = "jdbc:mysql://172.18.0.4:3306/mydatabase";
+        String username = "root";
+        String password = "root";
 
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
             String insertQuery = "INSERT INTO mytable (timestamps, jsoned_objects) VALUES (?, ?)";

@@ -1,6 +1,7 @@
 ---
+#mysql_user: root
+#mysql_user_password: root
+
 mysql_database: mydatabase
-mysql_user: myuser
-mysql_user_password: mypassword
 mysql_table: mytable
 mysql_root_password: root

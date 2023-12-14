@@ -1,15 +1,17 @@
-FROM ubuntu:14.04
+FROM ubuntu:20.04
+
+ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update \
-    && apt-get install -y openssh-server python3 python3-pip
+    && apt-get install -y openssh-server python3 python3-pip sudo
 
 RUN awk '{ sub(/#PermitRootLogin prohibit-password/, "PermitRootLogin yes"); } 1' /etc/ssh/sshd_config > /tmp/sshd_config \
     && mv /tmp/sshd_config /etc/ssh/sshd_config \
     && echo "root:root" | chpasswd \
-    && adduser --disabled-password --gecos "" user && echo "user:password" | chpasswd \
-    && sudo usermod -aG sudo user \
-    && echo "user ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers \
-    && echo "sudo ALL=(ALL:ALL) ALL" | sudo tee -a /etc/sudoers \
     && service ssh restart
+
+RUN apt-get install -y python3-apt aptitude mariadb-server python3-pymysql
+
+RUN apt-get install -y openjdk-11-jdk
 
 CMD ["/usr/sbin/sshd","-D"]

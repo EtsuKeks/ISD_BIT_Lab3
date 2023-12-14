@@ -8,9 +8,9 @@ RUN apk add --no-cache openssh-client openssh-server ansible git sshpass \
 COPY ./ansible .
 COPY ./app /app
 
-RUN echo "" > .my.chf \
-    && echo "[client]\n" >> .my.cnf \
-    && echo "user=root\n" >> .my.cnf \
-    && echo "password=root" >> .my.cnf
+RUN echo "" > my.cnf \
+    && echo "[client]" >> my.cnf \
+    && echo "user=root" >> my.cnf \
+    && echo "password={{ mysql_root_password }}" >> my.cnf
 
 CMD [""]

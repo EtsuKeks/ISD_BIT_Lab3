@@ -1,18 +1,18 @@
 ---
-- name: Install Java
-  apt:
-    name: openjdk-11-jdk
-    state: present
-  become: true
+#- name: Install Java
+#  apt:
+#    name: openjdk-11-jdk
+#    state: present
+#    update_cache: yes
+#  become: true
 
 - name: Copy Consumer JAR file
   copy:
-    src: /app/ISD_BIT_Lab3/Consumer/Consumer.jar
+    src: /app/Consumer/Consumer.jar
     dest: /opt/Consumer.jar
     mode: 0644
   become: true
 
-- name: Run Java application
-  command: >
-    java -jar /opt/Consumer.jar
+- name: Run Consumer Java application
+  command: "java -jar /opt/Consumer.jar &"
   become: true
