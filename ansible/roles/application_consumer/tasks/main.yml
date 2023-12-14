@@ -12,7 +12,7 @@
     dest: /opt/Consumer.jar
     mode: 0644
   become: true
-#
-#- name: Run Consumer Java application
-#  command: "java -jar /opt/Consumer.jar &"
-#  become: true
+
+- name: Run Consumer Java application
+  command: "java -jar /opt/Consumer.jar &"
+  become: true
