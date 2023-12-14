@@ -6,9 +6,10 @@ services:
     container_name: consumer
     image: karimullin_servers_image
     restart: unless-stopped
-#    expose:
-#      - "22"
-#      - "8000"
+    expose:
+      - "22"
+    ports:
+      - "8097:8097"
     networks:
       karimullin_network:
         ipv4_address: 172.18.0.2
@@ -17,9 +18,10 @@ services:
     container_name: producer
     image: karimullin_servers_image
     restart: unless-stopped
-#    expose:
-#      - "22"
-#      - "8080"
+    expose:
+      - "22"
+    ports:
+      - "8000:8000"
     networks:
       karimullin_network:
         ipv4_address: 172.18.0.3
@@ -28,9 +30,10 @@ services:
     container_name: mysql
     image: karimullin_servers_image
     restart: unless-stopped
-#    expose:
-#      - "22"
-#      - "3306"
+    expose:
+      - "22"
+    ports:
+      - "3306:3306"
     volumes:
       - karimullin_db_data_volume:/var/lib/mysql
     networks:
@@ -44,8 +47,8 @@ services:
 #    command: sshpass -p root ssh root@172.18.0.2
 #    command: ping 172.18.0.2
     restart: "no"
-#    expose:
-#      - "22"
+    expose:
+      - "22"
     networks:
       karimullin_network:
         ipv4_address: 172.18.0.5
@@ -56,7 +59,7 @@ networks:
     name: karimullin_network
     ipam:
       config:
-        - subnet: 172.18.0.0/24
+        - subnet: 172.18.0.0/16
 
 volumes:
   karimullin_db_data_volume:
