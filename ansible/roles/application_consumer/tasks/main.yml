@@ -14,9 +14,13 @@
   become: true
 
 - name: Unzip jar file
-  command: unzip /opt/Consumer.jar -d opt
+  ansible.builtin.unarchive:
+    src: /opt/Consumer.jar
+    dest: /opt
+    keep_newer: true
+    remote_src: true
   become: true
 
-- name: Run Consumer Java application
-  command: "java -cp opt:opt/mysql-connector-java-8.0.30.jar opt/Main &"
-  become: true
+#- name: Run Consumer Java application
+#  command: "java -cp /opt:/opt/mysql-connector-java-8.0.30.jar Main &"
+#  become: true

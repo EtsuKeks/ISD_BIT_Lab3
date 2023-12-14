@@ -69,6 +69,8 @@ public class Main {
         String username = "root";
         String password = "root";
 
+        System.out.println(jsoned);
+
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
             String insertQuery = "INSERT INTO mytable (timestamps, jsoned_objects) VALUES (?, ?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {

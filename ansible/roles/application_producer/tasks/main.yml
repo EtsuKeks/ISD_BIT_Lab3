@@ -14,9 +14,12 @@
   become: true
 
 - name: Unzip jar file
-  command: unzip /opt/Producer.jar -d opt
+  ansible.builtin.unarchive:
+    src: /opt/Producer.jar
+    dest: /opt
+    remote_src: true
   become: true
 
-- name: Run Producer Java application
-  command: "java -cp opt opt/Main &"
-  become: true
+#- name: Run Producer Java application
+#  command: "java -cp /opt Main &"
+#  become: true
