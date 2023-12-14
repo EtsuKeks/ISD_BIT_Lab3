@@ -6,9 +6,6 @@ services:
     container_name: consumer
     image: karimullin_servers_image
     restart: unless-stopped
-    expose:
-      - "22"
-      - "8097"
     networks:
       karimullin_network:
         ipv4_address: 172.18.0.2
@@ -17,9 +14,6 @@ services:
     container_name: producer
     image: karimullin_servers_image
     restart: unless-stopped
-    expose:
-      - "22"
-      - "8000"
     networks:
       karimullin_network:
         ipv4_address: 172.18.0.3
@@ -28,9 +22,6 @@ services:
     container_name: mysql
     image: karimullin_servers_image
     restart: unless-stopped
-    expose:
-      - "22"
-      - "3306"
     volumes:
       - karimullin_db_data_volume:/var/lib/mysql
     networks:
@@ -41,11 +32,7 @@ services:
     container_name: ansible
     image: karimullin_ansible_image
     command: ansible-playbook -i inventories/hosts playbook.yml
-#    command: sshpass -p root ssh root@172.18.0.2
-#    command: ping 172.18.0.2
     restart: "no"
-    expose:
-      - "22"
     networks:
       karimullin_network:
         ipv4_address: 172.18.0.5

@@ -9,7 +9,7 @@ RUN javac Main.java \
     && jar cfe Consumer.jar Main Main.class MiniClass.class ru/sber/karimullin/hw_3/Factory/Factory.class \
     ru/sber/karimullin/hw_3/Factory/Factory\$Counter.class ru/sber/karimullin/hw_3/Generator/Generator.class \
     ru/sber/karimullin/hw_3/RuntimeCompiler/RuntimeCompiler.class \
-    ru/sber/karimullin/hw_3/RuntimeCompiler/RuntimeCompiler\$JavaSourceFromString.class \
+    ru/sber/karimullin/hw_3/RuntimeCompiler/RuntimeCompiler\$JavaSourceFromString.class mysql-connector-java-8.0.30.jar \
     && rm -rf ru && rm -rf Main.* MiniClass.*
 
 WORKDIR /ISD_BIT_Lab3/Producer

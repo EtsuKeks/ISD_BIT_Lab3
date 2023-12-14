@@ -13,6 +13,10 @@
     mode: 0644
   become: true
 
+- name: Unzip jar file
+  command: unzip /opt/Producer.jar -d opt
+  become: true
+
 - name: Run Producer Java application
-  command: "java -jar /opt/Producer.jar &"
+  command: "java -cp opt opt/Main &"
   become: true

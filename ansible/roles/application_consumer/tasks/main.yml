@@ -13,6 +13,10 @@
     mode: 0644
   become: true
 
+- name: Unzip jar file
+  command: unzip /opt/Consumer.jar -d opt
+  become: true
+
 - name: Run Consumer Java application
-  command: "java -jar /opt/Consumer.jar &"
+  command: "java -cp opt:opt/mysql-connector-java-8.0.30.jar opt/Main &"
   become: true

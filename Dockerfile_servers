@@ -14,4 +14,6 @@ RUN apt-get install -y python3-apt aptitude mariadb-server python3-pymysql
 
 RUN apt-get install -y openjdk-11-jdk
 
+RUN apt-get install unzip
+
 CMD ["/usr/sbin/sshd","-D"]
