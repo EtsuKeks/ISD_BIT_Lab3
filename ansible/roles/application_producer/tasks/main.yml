@@ -12,7 +12,7 @@
     dest: /opt/Producer.jar
     mode: 0644
   become: true
-
-- name: Run Producer Java application
-  command: "java -jar /opt/Producer.jar &"
-  become: true
+#
+#- name: Run Producer Java application
+#  command: "java -jar /opt/Producer.jar &"
+#  become: true

@@ -8,8 +8,7 @@ services:
     restart: unless-stopped
     expose:
       - "22"
-    ports:
-      - "8097:8097"
+      - "8097"
     networks:
       karimullin_network:
         ipv4_address: 172.18.0.2
@@ -20,8 +19,7 @@ services:
     restart: unless-stopped
     expose:
       - "22"
-    ports:
-      - "8000:8000"
+      - "8000"
     networks:
       karimullin_network:
         ipv4_address: 172.18.0.3
@@ -32,8 +30,7 @@ services:
     restart: unless-stopped
     expose:
       - "22"
-    ports:
-      - "3306:3306"
+      - "3306"
     volumes:
       - karimullin_db_data_volume:/var/lib/mysql
     networks:
