@@ -73,7 +73,7 @@ public class Main {
         System.out.println(jsoned);
 
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
-            String insertQuery = "INSERT INTO mytable (timestamps, jsoned_objects) VALUES (?, ?)";
+            String insertQuery = "INSERT INTO mytable (timestamp, jsoned_object) VALUES (?, ?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
                 String timestamp = new Date().toString();
                 preparedStatement.setString(1, timestamp);

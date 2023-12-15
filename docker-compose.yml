@@ -23,7 +23,7 @@ services:
     image: karimullin_servers_image
     restart: unless-stopped
     volumes:
-      - karimullin_db_data_volume:/var/lib/mysql
+      - karimullin_db_data_volume:/root
     networks:
       karimullin_network:
         ipv4_address: 172.18.0.4

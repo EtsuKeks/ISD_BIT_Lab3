@@ -4,4 +4,5 @@
 
 mysql_database: mydatabase
 mysql_table: mytable
-mysql_root_password: root
+
+mysql_root_password: password
