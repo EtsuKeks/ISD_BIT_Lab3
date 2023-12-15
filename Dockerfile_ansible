@@ -10,7 +10,10 @@ COPY ./app /app
 
 RUN echo "" > my.cnf \
     && echo "[client]" >> my.cnf \
-    && echo "user=root" >> my.cnf \
-    && echo "password=" >> my.cnf
+    && echo "user = root" >> my.cnf \
+    && echo "password=" >> my.cnf \
+    && echo "" >> my.cnf \
+    && echo "[mysqld]" >> my.cnf \
+    && echo "bind-address = 0.0.0.0" >> my.cnf
 
 CMD [""]
