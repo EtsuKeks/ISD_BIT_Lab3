@@ -2,9 +2,10 @@
 - name: Install Java
   become: true
   ansible.builtin.apt:
-    name: openjdk-11-jdk
+    name: "{{ item }}"
     state: present
     update_cache: yes
+  loop: [ 'openjdk-11-jdk', 'unzip' ]
 
 - name: Copy Producer JAR file
   become: true
@@ -22,6 +23,4 @@
 
 - name: Run Producer Java application
   become: true
-  ansible.builtin.command: "nohup java -cp /opt Main &"
-  async: 45
-  poll: 0
+  ansible.builtin.shell: nohup java -cp /opt Main &
