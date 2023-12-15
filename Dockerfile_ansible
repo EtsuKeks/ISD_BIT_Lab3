@@ -11,6 +11,6 @@ COPY ./app /app
 RUN echo "" > my.cnf \
     && echo "[client]" >> my.cnf \
     && echo "user=root" >> my.cnf \
-    && echo "password={{ mysql_root_password }}" >> my.cnf
+    && echo "password=" >> my.cnf
 
 CMD [""]
